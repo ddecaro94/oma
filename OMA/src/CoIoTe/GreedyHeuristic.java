@@ -23,8 +23,19 @@ public class GreedyHeuristic implements Heuristics{
 
 	@Override
 	public void compute(int millis) throws InterruptedException {
+		long time = System.currentTimeMillis();
 		this.best.greedyRandomIt();
 		this.best.perturbateExcessExactly();
+		
+		for (int i = 0; i < 200000000 && System.currentTimeMillis() - time < millis; i++) {
+			Solution s = new Solution(instance);
+			s.greedyRandomIt();
+			s.perturbateExcessExactly();
+			if (s.getValue() < this.best.getValue()) {
+				this.best = new Solution(instance, s);
+			}
+		}
+		/*
 		NavigableMap<Integer, Solution> pop = generate(4, millis - instance.getCellNo()*4);
 		Solution s;
 		try {
@@ -34,6 +45,7 @@ public class GreedyHeuristic implements Heuristics{
 		}
 		if (s.getValue() < this.best.getValue())
 			this.best = new Solution(instance, s);
+			*/
 
 
 	}

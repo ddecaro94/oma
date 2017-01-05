@@ -480,6 +480,27 @@ public class Solution {
 		}
 	}
 	
+	public String toString(){
+		Integer[] people = new Integer[typesNo];
+		for (int m = 0; m < typesNo; m++) {
+			people[m] = new Integer(0);
+			for (int i = 0; i < this.Xijmt.length; i++) {
+				for (int j = 0; j < this.Xijmt[i].length; j++ ) {
+					for (int t = 0; t < this.Xijmt[i][j][m].length; t++) {
+						if (this.Xijmt[i][j][m][t] != 0) {
+							//System.out.println("I: " + i + " J: " + j + " M: " + m + " T: " + t + " Valore : " + this.Xijmt[i][j][m][t]);
+							people[m] += this.Xijmt[i][j][m][t];
+						}
+					}
+				}
+			}
+		}
+		String sol = this.value + ";";
+		for (int m = 0; m < typesNo; m++) sol = sol + people[m] + ";";
+		return sol;
+		
+	}
+	
 	public int getX(int i, int j, int m, int t) {
 		return Xijmt[i][j][m][t];
 	}

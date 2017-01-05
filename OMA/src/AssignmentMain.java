@@ -69,7 +69,7 @@ public class AssignmentMain {
 			long time = System.currentTimeMillis();
 			h.compute(5000);
 			s = h.getSolution();
-			String out = input.getName().replaceAll(".txt", "") + ";" + s.getValue() + "\n";
+			String out = input.getName().replaceAll(".txt", "") + ";" + (System.currentTimeMillis() - time)/1000.0 +";"+ s.toString() + "\n";
 			System.out.println(out + " " + (System.currentTimeMillis() - time));
 			if (!output.exists()) Files.createFile(Paths.get(outputPath));
 			Files.write(Paths.get(outputPath), out.getBytes(), StandardOpenOption.APPEND);
@@ -84,7 +84,6 @@ public class AssignmentMain {
 		} catch (InstanceFormatException f) {
 			System.out.println(f);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
 		
